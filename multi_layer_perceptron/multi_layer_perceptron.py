@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-from keras.models import Sequential
-from keras.layers import Dense
+from keras import Sequential
+from keras import layers
 
 logger = logging.getLogger(__name__)
 
@@ -68,9 +68,9 @@ class MultiLayerPerceptron:
         # Second split on training set to create the validation set (20% of training set)
         X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.2)
         model = Sequential()
-        model.add(Dense(32, activation='relu', input_dim=8))
-        model.add(Dense(16, activation='relu'))
-        model.add(Dense(1, activation='sigmoid'))
+        model.add(layers.Dense(32, activation='relu', input_dim=8))
+        model.add(layers.Dense(16, activation='relu'))
+        model.add(layers.Dense(1, activation='sigmoid'))
         model.compile(optimizer='adam',
         loss='binary_crossentropy',
         metrics=['accuracy'])
@@ -134,6 +134,7 @@ class MultiLayerPerceptron:
           
 
 if __name__ =='__main__':
+    # TODO: Need to fix 
     m_perceptron = MultiLayerPerceptron("diabetes.csv")
     m_perceptron.explore_analysis()
     m_perceptron.cleaned_data()
